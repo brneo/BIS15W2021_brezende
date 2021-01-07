@@ -5,13 +5,16 @@ output:
     keep_md: yes
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
+
 
 # This is my first markdown file
-```{r}
+
+```r
 4*12
+```
+
+```
+## [1] 48
 ```
 
 ## This is my [email](mailto:brezende@ucdavis.edu)
@@ -20,14 +23,23 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ## Problem 1
 # Brian and his friends go out to dinner. Dinner costs $978.56. There are 14 people at dinner. How much does everyone pay?
-```{r}
+
+```r
 978.56/14
 ```
-```{r message=FALSE}
+
+```
+## [1] 69.89714
+```
+
+```r
 #install.packages("tidyverse")
 library("tidyverse")
 ```
-```{r}
+
+```r
 ggplot(mtcars, aes(x = factor(cyl))) +
     geom_bar()
 ```
+
+![](testy_files/figure-html/unnamed-chunk-4-1.png)<!-- -->
