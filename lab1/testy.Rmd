@@ -1,0 +1,32 @@
+---
+title: "test Rmarkdown"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+# This is my first markdown file
+```{r}
+4*12
+```
+
+## This is my [email](mailto:brezende@ucdavis.edu)
+
+### This is [Google](https://www.google.com) 
+
+## Problem 1
+# Brian and his friends go out to dinner. Dinner costs $978.56. There are 14 people at dinner. How much does everyone pay?
+```{r}
+978.56/14
+```
+```{r message=FALSE}
+#install.packages("tidyverse")
+library("tidyverse")
+```
+```{r}
+ggplot(mtcars, aes(x = factor(cyl))) +
+    geom_bar()
+```
+
