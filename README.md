@@ -1,9 +1,3 @@
----
-title: "ReadMe.md"
-output: 
-  html_document: 
-    keep_md: yes
----
 # Brians BIS 15L Repository
 ## About Me:
 ### Hello, Hola, Oi! 
