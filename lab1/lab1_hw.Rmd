@@ -47,7 +47,7 @@ pi*2
 ```
 
 **8. In order to get help with any command in R, just type a `?` in front the command of interest. Practice this by running the following code chunk.**  
-```{r}
+```{r message=FALSE}
 ?mean
 ```
 

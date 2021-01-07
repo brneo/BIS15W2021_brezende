@@ -78,10 +78,6 @@ pi*2
 ?mean
 ```
 
-```
-## starting httpd help server ... done
-```
-
 **9. Let's calculate the mean for the numbers 2, 8, 6, 4, 9, 10. I have built an object `x` for you below so all you need to do is run the first code chunk and then create a second code chunk that shows the calculation. Give it a try!**  
 
 ```r
