@@ -594,9 +594,7 @@ levels(homerange$order)</code></pre>
 ## [19] &quot;trophic.guild&quot;              &quot;dimension&quot;                 
 ## [21] &quot;preymass&quot;                   &quot;log10.preymass&quot;            
 ## [23] &quot;PPMR&quot;                       &quot;prey.size.reference&quot;</code></pre>
-</div>
-<div id="upon-checking-the-column-names-again-i-see-that-i-can-group-columns-1-7-to-make-my-new-data-frame-taxa" class="section level1">
-<h1>Upon checking the column names again, I see that I can group columns 1-7 to make my new data frame “taxa”</h1>
+<p>Upon checking the column names again, I see that I can group columns 1-7 to make my new data frame “taxa”</p>
 <pre class="r"><code>taxa &lt;- select(homerange, &quot;taxon&quot;:&quot;species&quot;)
 taxa</code></pre>
 <pre><code>## # A tibble: 569 x 7
@@ -613,9 +611,7 @@ taxa</code></pre>
 ##  9 marine f… lined surgeonfish actinopte… percifor… acanthur… acanthu… lineatus 
 ## 10 marine f… orangespine unic… actinopte… percifor… acanthur… naso     lituratus
 ## # … with 559 more rows</code></pre>
-</div>
-<div id="the-taxa-represented-in-this-data-frame-include-lake-fishes-river-fishes-marine-fishes-birds-mammals-lizards-snakes-turtles-and-tortoises." class="section level1">
-<h1>The taxa represented in this data frame include lake fishes, river fishes, marine fishes, birds, mammals, lizards, snakes, turtles, and tortoises.</h1>
+<p>The taxa represented in this data frame include lake fishes, river fishes, marine fishes, birds, mammals, lizards, snakes, turtles, and tortoises.</p>
 <p><strong>5. The variable <code>taxon</code> identifies the large, common name groups of the species represented in <code>homerange</code>. Make a table the shows the counts for each of these <code>taxon</code>.</strong><br />
 The counts for each of the taxon within my data frame “taxa” are shown as below.</p>
 <pre class="r"><code>table(taxa$taxon)</code></pre>
@@ -753,10 +749,10 @@ snake</code></pre>
 ## #   hra.reference &lt;chr&gt;, realm &lt;chr&gt;, thermoregulation &lt;chr&gt;, locomotion &lt;chr&gt;,
 ## #   trophic.guild &lt;chr&gt;, dimension &lt;chr&gt;, preymass &lt;dbl&gt;, log10.preymass &lt;dbl&gt;,
 ## #   PPMR &lt;dbl&gt;, prey.size.reference &lt;chr&gt;</code></pre>
+</div>
 <div id="push-your-final-code-to-github" class="section level2">
 <h2>Push your final code to GitHub!</h2>
 <p>Please be sure that you check the <code>keep md</code> file in the knit preferences.</p>
-</div>
 </div>
 
 

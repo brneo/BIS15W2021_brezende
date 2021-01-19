@@ -264,7 +264,7 @@ colnames(homerange)
 ## [21] "preymass"                   "log10.preymass"            
 ## [23] "PPMR"                       "prey.size.reference"
 ```
-# Upon checking the column names again, I see that I can group columns 1-7 to make my new data frame "taxa"
+Upon checking the column names again, I see that I can group columns 1-7 to make my new data frame "taxa"
 
 ```r
 taxa <- select(homerange, "taxon":"species")
@@ -287,7 +287,7 @@ taxa
 ## 10 marine f… orangespine unic… actinopte… percifor… acanthur… naso     lituratus
 ## # … with 559 more rows
 ```
-# The taxa represented in this data frame include lake fishes, river fishes, marine fishes, birds, mammals, lizards, snakes, turtles, and tortoises. 
+The taxa represented in this data frame include lake fishes, river fishes, marine fishes, birds, mammals, lizards, snakes, turtles, and tortoises. 
 
 **5. The variable `taxon` identifies the large, common name groups of the species represented in `homerange`. Make a table the shows the counts for each of these `taxon`.**  
 The counts for each of the taxon within my data frame "taxa" are shown as below. 
