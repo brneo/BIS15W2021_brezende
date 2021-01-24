@@ -1,7 +1,7 @@
 ---
 title: "Lab 4 Homework"
 author: "Brian Rezende"
-date: "2021-01-19"
+date: "2021-01-24"
 output:
   html_document: 
     theme: spacelab
@@ -10,12 +10,13 @@ output:
 
 
 
+
 ```r
 getwd()
 ```
 
 ```
-## [1] "/Users/bdog/Desktop/BIS15W2021_brezende/lab4"
+## [1] "/Users/jmledford/Desktop/BIS15W2021_brezende/lab4"
 ```
 
 ## Instructions
@@ -36,6 +37,10 @@ For the homework, we will use data about vertebrate home range sizes. The data a
 Reference: Tamburello N, Cote IM, Dulvy NK (2015) Energy and the scaling of animal space use. The American Naturalist 186(2):196-211. http://dx.doi.org/10.1086/682070.  
 Data: http://datadryad.org/resource/doi:10.5061/dryad.q5j65/1  
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 **1. Load the data into a new object called `homerange`.**
 
 ```r
@@ -43,8 +48,7 @@ homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
 ```
 
 ```
-## 
-## ── Column specification ────────────────────────────────────────────────────────
+## Parsed with column specification:
 ## cols(
 ##   .default = col_character(),
 ##   mean.mass.g = col_double(),
@@ -55,7 +59,10 @@ homerange <- readr::read_csv("data/Tamburelloetal_HomeRangeDatabase.csv")
 ##   log10.preymass = col_double(),
 ##   PPMR = col_double()
 ## )
-## ℹ Use `spec()` for the full column specifications.
+```
+
+```
+## See spec(...) for full column specifications.
 ```
 
 ```r
@@ -82,6 +89,9 @@ homerange
 ## #   locomotion <chr>, trophic.guild <chr>, dimension <chr>, preymass <dbl>,
 ## #   log10.preymass <dbl>, PPMR <dbl>, prey.size.reference <chr>
 ```
+</div>
+
+These data were not in the folder so your code would not run.  
 
 **2. Explore the data. Show the dimensions, column names, classes for each variable, and a statistical summary. Keep these as separate code chunks.**  
 
@@ -90,8 +100,8 @@ glimpse(homerange)
 ```
 
 ```
-## Rows: 569
-## Columns: 24
+## Observations: 569
+## Variables: 24
 ## $ taxon                      <chr> "lake fishes", "river fishes", "river fish…
 ## $ common.name                <chr> "american eel", "blacktail redhorse", "cen…
 ## $ class                      <chr> "actinopterygii", "actinopterygii", "actin…
@@ -118,6 +128,7 @@ glimpse(homerange)
 ## $ prey.size.reference        <chr> NA, NA, NA, NA, NA, NA, "Brose U, et al. 2…
 ```
 
+
 ```r
 colnames(homerange)
 ```
@@ -136,6 +147,7 @@ colnames(homerange)
 ## [21] "preymass"                   "log10.preymass"            
 ## [23] "PPMR"                       "prey.size.reference"
 ```
+
 
 ```r
 summary(homerange)
@@ -199,6 +211,7 @@ summary(homerange)
 ##  Max.   :530.000                      
 ##  NA's   :502
 ```
+
 
 ```r
 dim(homerange)

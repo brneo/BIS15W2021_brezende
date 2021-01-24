@@ -17,6 +17,7 @@ Make sure to use the formatting conventions of RMarkdown to make your report nea
 ```{r message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
+
 ```{r}
 getwd()
 ```
@@ -30,11 +31,18 @@ We can utilize the following code chunk to find the publication
 ?msleep
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 2. Store these data into a new data frame `sleep`.
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
-sleep <- data_frame(msleep)
+sleep <- msleep
 sleep
 ```
+</div>
+
+The problem that you had here was the result of making msleep (which is already a data frame) into a new data frame. I adjusted this part and you can see the result is cleaner.
 
 3. What are the dimensions of this data frame (variables and observations)? How do you know? Please show the *code* that you used to determine this below.  
 
