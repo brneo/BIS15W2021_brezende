@@ -1,7 +1,7 @@
 ---
 title: "Lab 3 Homework"
 author: "Brian Rezende"
-date: "2021-01-13"
+date: "2021-01-24"
 output:
   html_document: 
     theme: spacelab
@@ -19,12 +19,13 @@ Make sure to use the formatting conventions of RMarkdown to make your report nea
 library(tidyverse)
 ```
 
+
 ```r
 getwd()
 ```
 
 ```
-## [1] "/Users/bdog/Desktop/BIS15W2021_brezende/lab3"
+## [1] "/Users/jmledford/Desktop/BIS15W2021_brezende/lab3"
 ```
 
 ## Mammals Sleep
@@ -37,6 +38,10 @@ We can utilize the following code chunk to find the publication
 ?msleep
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 2. Store these data into a new data frame `sleep`.
 
 ```
@@ -55,6 +60,9 @@ We can utilize the following code chunk to find the publication
 ## 10 Roe … Capr… herbi Arti… lc                   3        NA        NA      21  
 ## # … with 73 more rows, and 2 more variables: brainwt <dbl>, bodywt <dbl>
 ```
+</div>
+
+The problem that you had here was the result of making msleep (which is already a data frame) into a new data frame. I adjusted this part and you can see the result is cleaner.
 
 3. What are the dimensions of this data frame (variables and observations)? How do you know? Please show the *code* that you used to determine this below.  
 
@@ -73,8 +81,8 @@ glimpse(sleep)
 ```
 
 ```
-## Rows: 83
-## Columns: 11
+## Observations: 83
+## Variables: 11
 ## $ name         <chr> "Cheetah", "Owl monkey", "Mountain beaver", "Greater sho…
 ## $ genus        <chr> "Acinonyx", "Aotus", "Aplodontia", "Blarina", "Bos", "Br…
 ## $ vore         <chr> "carni", "omni", "herbi", "omni", "herbi", "herbi", "car…
