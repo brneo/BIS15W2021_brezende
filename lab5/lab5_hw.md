@@ -1,7 +1,7 @@
 ---
 title: "Lab 5 Homework"
 author: "Brian Rezende"
-date: "2021-01-20"
+date: "2021-01-26"
 output:
   html_document: 
     theme: spacelab
@@ -621,6 +621,10 @@ superhero_powers %>%
 ## 10 Ares         TRUE                TRUE       TRUE          
 ## # ... with 87 more rows
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 ## `kinesis`
 15. We are only interested in the superheros that do some kind of "kinesis". How would we isolate them from the `superhero_powers` data?
@@ -677,6 +681,9 @@ kinesis
 ```
 
 In contrast, this data is much smaller. By scrolling through the results, we can see that in at least one of the rows, a superhero can use at least one type of kinesis. This removes all the other heros who lack kinesis abilities. 
+
+</div>
+
 
 16. Pick your favorite superhero and let's see their powers!
 
