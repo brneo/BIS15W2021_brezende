@@ -159,7 +159,7 @@ elephants %>%
 The `rel()` option changes the relative size of the title to keep things consistent. Adding `hjust` allows control of title position.
 ```{r}
 elephants %>% 
-  ggplot(aes(x=age, y=height)) + geom_point() + geom_smooth(method=lm, se=F) +
+  ggplot(aes(x=age, y=height)) + geom_point(color="steelblue") + geom_smooth(method=lm, se=F) +
   labs(title = "Elephant Age vs. Height",
        x = "Age",
        y = "Height") +
