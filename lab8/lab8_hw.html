@@ -11,7 +11,7 @@
 
 <meta name="author" content="Brian Rezende" />
 
-<meta name="date" content="2021-02-04" />
+<meta name="date" content="2021-02-09" />
 
 <title>Lab 8 Homework</title>
 
@@ -191,7 +191,7 @@ summary {
 
 <h1 class="title toc-ignore">Lab 8 Homework</h1>
 <h4 class="author">Brian Rezende</h4>
-<h4 class="date">2021-02-04</h4>
+<h4 class="date">2021-02-09</h4>
 
 </div>
 
@@ -394,7 +394,7 @@ library(skimr)</code></pre>
 </table>
 <p>If you want to try <code>here</code>, first notice the output when you load the <code>here</code> library. It gives you information on the current working directory. You can then use it to easily and intuitively load files.</p>
 <pre class="r"><code>library(here)</code></pre>
-<pre><code>## here() starts at C:/Users/brian/Desktop/BIS15W2021_brezende</code></pre>
+<pre><code>## here() starts at D:/TA files/Winter2021 BIS15L/students_rep/BIS15W2021_brezende</code></pre>
 <p>The quotes show the folder structure from the root directory.</p>
 <pre class="r"><code>sydneybeaches &lt;-read_csv(here(&quot;lab8&quot;, &quot;data&quot;, &quot;sydneybeaches.csv&quot;)) %&gt;% janitor::clean_names()</code></pre>
 <pre><code>## 
@@ -424,10 +424,15 @@ library(skimr)</code></pre>
 ##  9       25 Sydney C~ Randwick~ Clove~      151.    -33.9 07/0~                3
 ## 10       25 Sydney C~ Randwick~ Clove~      151.    -33.9 25/0~                0
 ## # ... with 3,680 more rows</code></pre>
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class="blue">
 <ol start="2" style="list-style-type: decimal">
 <li>Are these data “tidy” per the definitions of the tidyverse? How do you know? Are they in wide or long format?</li>
 </ol>
-<p>Based on the exploratory analysis done, it is clear that this data isn’t “tidy”. I can conclude that this data isn’t tidy due to several of the column names are actually variables such as date, longitude, latitude, and the cfu column of enterococci. It appears that the data is in long format.</p>
+Based on the exploratory analysis done, it is clear that this data isn’t “tidy”. I can conclude that this data isn’t tidy due to several of the column names are actually variables such as date, longitude, latitude, and the cfu column of enterococci. It appears that the data is in long format.
+</div>
 <ol start="3" style="list-style-type: decimal">
 <li>We are only interested in the variables site, date, and enterococci_cfu_100ml. Make a new object focused on these variables only. Name the object <code>sydneybeaches_long</code></li>
 </ol>
