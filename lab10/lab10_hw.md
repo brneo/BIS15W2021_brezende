@@ -1,7 +1,7 @@
 ---
 title: "Lab 10 Homework"
 author: "Brian Rezende"
-date: "2021-02-11"
+date: "2021-02-15"
 output:
   html_document: 
     theme: spacelab
@@ -110,8 +110,8 @@ Table: Data summary
 
 **Variable type: numeric**
 
-|skim_variable   | n_missing| complete_rate|     mean|       sd|   p0|     p25|     p50|      p75|  p100|hist                                     |
-|:---------------|---------:|-------------:|--------:|--------:|----:|-------:|-------:|--------:|-----:|:----------------------------------------|
+|skim_variable   | n_missing| complete_rate|     mean|       sd|   p0|     p25|     p50|      p75|  p100|hist  |
+|:---------------|---------:|-------------:|--------:|--------:|----:|-------:|-------:|--------:|-----:|:-----|
 |record_id       |         0|          1.00| 17804.20| 10229.68|    1| 8964.25| 17761.5| 26654.75| 35548|▇▇▇▇▇ |
 |month           |         0|          1.00|     6.47|     3.40|    1|    4.00|     6.0|    10.00|    12|▇▆▆▅▇ |
 |day             |         0|          1.00|    16.10|     8.25|    1|    9.00|    16.0|    23.00|    31|▆▇▇▇▆ |
@@ -144,6 +144,10 @@ naniar::miss_var_summary(deserts)
 ```
 
 The data is not tidy, as many of the column names contain variables that could be used for further exploratory analysis. Variables such as month, day, and weight could be used in a cleaner fashion in order to make the data tidy. Moreover, NA's in this dataset are represented as NA's and do not appear as "-999" or anything else. 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 2. How many genera and species are represented in the data? What are the total number of observations? Which species is most/ least frequently sampled in the study?
 
@@ -216,6 +220,7 @@ deserts %>%
 ```
 
 The most sampled species in this study is **merriami** and the least frequently sampled species is **clarki, scutalatus, tereticaudus, tigris, uniparens, and viridis.** 
+</div>
 
 3. What is the proportion of taxa included in this study? Show a table and plot that reflects this count.
 
@@ -306,7 +311,7 @@ deserts %>%
 ```
 
 ```
-## `summarise()` regrouping output by 'year' (override with `.groups` argument)
+## `summarise()` has grouped output by 'year'. You can override using the `.groups` argument.
 ```
 
 ```
