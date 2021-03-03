@@ -98,16 +98,29 @@ life_expectancy_tidy %>%
   count(country, sort = T) %>% 
   summarize(n_distinct(country),.groups = 'keep')
 ```
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 
 ## Life Expectancy  
 
 3. (2 points) Let's limit the data to the past 100 years (1920-2020). For these years, which country has the highest life expectancy? How about the lowest life expectancy?  
 
+Have a look at how I did this here. Since it is for all of the years, you need an average.
+```{r}
+life_expectancy_tidy %>% 
+  filter(year>=1920 & year<=2020) %>% 
+  group_by(country) %>% 
+  summarize(mean_life_expectancy=mean(lifeExp)) %>% 
+  arrange(desc(mean_life_expectancy))
+```
+
 Highest
 ```{r}
 life_expectancy_tidy %>% 
   group_by(country, year) %>% 
-  filter(year>=1920, year<=2020) %>% 
+  filter(year>=1920 | year<=2020) %>% 
   summarize(max_lifeExp=max(lifeExp),.groups = 'keep') %>% 
   arrange(desc(max_lifeExp)) %>% 
   head(n=1)
@@ -122,7 +135,12 @@ life_expectancy_tidy %>%
   arrange(low_lifeExp) %>% 
   head(n=1)
 ```
+</div>
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 4. (3 points) Although we can see which country has the highest life expectancy for the past 100 years, we don't know which countries have changed the most. What are the top 5 countries that have experienced the biggest improvement in life expectancy between 1920-2020?
 ```{r}
 life_expectancy_tidy %>% 
@@ -134,7 +152,7 @@ life_expectancy_tidy %>%
 ```
 
 The top 5 countries that have experienced the biggest improvement in life expectancy between 1920-2020 include Rwanda, Kazakhstan, Lithuania, Moldova, and Germany. Below I display this improvement with a visual. 
-
+</div>
 
 ```{r}
 life_expectancy_tidy %>% 
@@ -179,6 +197,10 @@ population_tidy %>%
   head(n=5)
 ```
 
+<style>
+div.blue { background-color:#e6f0ff; border-radius: 5px; padding: 20px;}
+</style>
+<div class = "blue">
 7. (4 points) Produce a plot that shows the 5 countries that have had the highest population growth over the past 100 years (1920-2020). Which countries appear to have had exponential growth?  
 ```{r}
 population_tidy %>% 
@@ -197,6 +219,7 @@ ggplot(aes(x=country, y=large_pop_growth, fill=country))+
 ```
 
 China and India appear to have had the greatest exponential growth compared to the other 3 countries. 
+</div>
 
 ## Income
 The units used for income are gross domestic product per person adjusted for differences in purchasing power in international dollars.
