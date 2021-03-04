@@ -1,0 +1,151 @@
+---
+title: "Lab 14 Homework"
+author: "Brian Rezende"
+date: "`r Sys.Date()`"
+output: 
+  html_document: 
+    keep_md: yes
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Instructions
+Answer the following questions and complete the exercises in RMarkdown. Please embed all of your code and push your final work to your repository. Your final lab report should be organized, clean, and run free from errors. Remember, you must remove the `#` for the included code chunks to run. Be sure to add your name to the author header above. For any included plots, make sure they are clearly labeled. You are free to use any plot type that you feel best communicates the results of your analysis.  
+
+Make sure to use the formatting conventions of RMarkdown to make your report neat and clean!  
+
+## Load the libraries
+```{r message=FALSE, warning=FALSE}
+library(qtl)
+library(qtlcharts)
+library(tidyverse)
+library(ggmap)
+```
+
+**1. We have a satellite collars on a number of different individuals and want to be able to quickly look at all of their recent movements at once. Please load all the data files from `us_individual_collar_data` and use for loop to create plots for all different individuals of the path they move on longitude and latitude.**
+```{r}
+collar_data <- list.files("data/us_individual_collar_data", full.names = TRUE)
+collar_data
+```
+```{r message=FALSE, warning=FALSE}
+i <- 1
+for (i in 1:length(collar_data)){
+  individuals_us <- as.data.frame(read_csv(collar_data[i]))
+  print(
+    ggplot(individuals_us, aes(x=long,y=lat))+
+      geom_path()+
+      geom_point()+
+      labs(title = collar_data[i], x = "longitude", y = "latitude")
+  )
+}
+```
+
+**2. Please load all the data files from `us_individual_collar_data` and combine all data into one data frame. Create a summary to show what is the maximum and minimum of recorded data points on longitude and latitude.**
+```{r warning=FALSE}
+us_collar_list <- lapply(collar_data, read_csv)
+```
+```{r}
+us_collar_data_all <- bind_rows(us_collar_list)
+us_collar_data_all %>% 
+  summarize(max_lat=max(lat),
+            min_lat=min(lat),
+            max_long=max(long),
+            min_long=min(long))
+```
+
+**3. Use the range of the latitude and longitude from Q2 to build an appropriate bounding box for your map and load a map from `stamen` in a terrain style projection and display the map. Then, build a final map that overlays the recorded path from Q1.**
+```{r}
+lat <- c(26.6116, 41.58802)
+long <- c(-106.3343, -122.6017)
+bbox <- make_bbox(long, lat, f = 0.05)
+
+collar_data_map <- get_map(bbox, maptype = "terrain", source = "stamen")
+```
+```{r message=FALSE, warning=FALSE}
+for (i in 1:length(collar_data)){
+  final_data_map <- as.data.frame(read_csv(collar_data[i]))
+  print(
+    ggmap(collar_data_map)+
+      geom_path(data = final_data_map, aes(long,lat))+
+      geom_point(data = final_data_map, aes(long,lat))+
+      labs(title = collar_data[i], x = "longitude", y = "latitude")
+  )
+}
+```
+
+## Load the Data
+We will use the data from an experiment on hypertension in the mouse [Sugiyama et al., Genomics 71:70-77, 2001](https://www.sciencedirect.com/science/article/pii/S0888754300964012?via%3Dihub)
+```{r}
+#?hyper
+data(hyper)
+```
+
+**4. Create a summary of the hypertension data. How many individuals and phenotypes are included in this data set? How many gene markers and chromosomes are included in this data set? Please create a table to show the number of markers on each chromosome.**
+```{r}
+summary(hyper)
+```
+In this data set there are 250 individuals and 2 phenotypes reported. The total number of gene markers is 174 and this data set is studying only 20 chromosomes. 
+
+```{r}
+nmar(hyper) #tells us the num. of markers on each chromosome 
+```
+Chromosome 1 has 22 markers, chromosome 10 has 5 markers, and chromosome 20 has 4 markers! 
+
+**5. Please make an interactive genetic map of markers for the hypertension data.**
+```{r}
+iplotMap(hyper)
+```
+
+**6. Make a plot shows the pattern of missing genotype data in the hypertension dataset. Please reorder the recorded individuals according to their blood pressure phenotypes. Is there a specific pattern of missing genotype? Please explain it.**
+```{r}
+plotMissing(hyper, main="")
+plotMissing(hyper, main="", reorder=1)
+```
+When comparing the two plots it becomes clear that about 50-200 individuals are missing relevant blood pressure data. 
+
+**7. Based on your answer from previous question, you probably noticed that there are gene markers without data. Please use the function `drop.nullmarkers` to remove markers that have no genotype data. After this, make a new summary to show the number of markers on each chromosome. How many gene markers were dropped? Where were the dropped markers located? Please use the data without nullmarkers for the following questions.**
+```{r}
+nmar(hyper)
+```
+
+```{r}
+hyper_clean <- drop.nullmarkers(hyper)
+```
+
+There is one less marker after utilizing this function. The dropped marker seems to be located on chromosome 14. 
+
+**8. Please conduct single-QTL analysis and create a table to give the maximum LOD score on each chromosome based on their blood pressure phenotypes. Which gene marker has the highest LOD score? Which chromosome contains the gene marker that has the highest LOD score? Then, creates an interactive chart with LOD curves from a genome scan for all chromosomes.**
+```{r}
+hyper_clean <- calc.genoprob(hyper_clean, step=1)
+hyper_LOD <- scanone(hyper_clean)
+
+
+summary(hyper_LOD) %>% 
+  arrange(desc(lod))
+```
+The gene marker with the highest LOD score is D4Mit164, which is located on chromosome 4. 
+
+#Interactive chart 
+```{r}
+iplotScanone(hyper_LOD)
+```
+
+**9. Based on your genome scan results, create a table which only includes those chromosomes with LOD > 1. Creates an interactive chart with LOD curves linked to estimated QTL effects for only those chromosomes with LOD > 1. Find the gene maker with the highest LOD score and describe how does the genotype of this marker influence the individual's phenotype.**
+```{r}
+summary(hyper_LOD, threshold=1)
+```
+```{r}
+iplotScanone(hyper_LOD, hyper_clean, chr=c(1, 2, 4, 5, 6, 15))
+```
+D4Mit164 is the gene marker with the highest LOD score. It registers a score of 8.09. When a gene marker has a high LOD score it means that the genes are in close proximity to one another on the chromosome (chromosome 4 in this case). Since this marker has a very high score, this genotype tells us that it's most likely for this gene of having high blood pressure will be inherited together. 
+
+**10. Please save your interactive chart from Q9 as a html file `hyper_iplotScanone.html` and make sure your upload it to your github repository with your lab14 homework as well.**
+```{r}
+hyper_lod_interact <- iplotScanone(hyper_LOD, hyper_clean, chr=c(1, 2, 4, 5, 6, 15))
+htmlwidgets::saveWidget(hyper_lod_interact, file="iplotScanone.html")
+```
+
+## Push your final code to GitHub!
+Please be sure that you check the `keep md` file in the knit preferences. 
